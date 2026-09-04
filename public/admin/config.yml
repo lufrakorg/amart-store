@@ -1,0 +1,57 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "public/images/products"
+public_folder: "/images/products"
+
+local_backend: true
+
+collections:
+  - name: "products"
+    label: "Prodotti"
+    folder: "src/content/products"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{id}}"
+    identifier_field: "name"
+    fields:
+      - { label: "ID", name: "id", widget: "string" }
+      - { label: "Nome", name: "name", widget: "string" }
+      - label: "Categoria"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Pantaloni", value: "pantaloni" }
+          - { label: "Maglie", value: "maglie" }
+          - { label: "Top", value: "top" }
+          - { label: "Abiti", value: "abiti" }
+          - { label: "Giacche", value: "giacche" }
+          - { label: "Accessori", value: "accessori" }
+      - {
+          label: "Etichetta Categoria",
+          name: "categoryLabel",
+          widget: "string",
+        }
+      - { label: "Immagine", name: "image", widget: "image" }
+      - {
+          label: "Testo Alternativo Immagine",
+          name: "imageAlt",
+          widget: "string",
+        }
+      - { label: "Taglie (es. S, M, L)", name: "sizes", widget: "string" }
+      - { label: "Prezzo", name: "price", widget: "string" }
+      - {
+          label: "Badge (Opzionale)",
+          name: "badge",
+          widget: "string",
+          required: false,
+        }
+      - label: "Tipo Badge"
+        name: "badgeType"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Default", value: "default" }
+          - { label: "Outline", value: "outline" }

@@ -1,0 +1,501 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+    title: string;
+    description: string;
+    activePage: "home" | "collezione" | "acquista";
+}
+
+const { title, description, activePage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#1B2E50" />
+        <meta name="robots" content="index, follow" />
+        <title>{title}</title>
+        <meta name="author" content="GA.SA.SRLS — Amart Store Salerno" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="it_IT" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap"
+        />
+        <link rel="icon" href="/favicon.ico" />
+
+        <script is:inline>
+            // Early smartphone & language auto-detection to prevent flash
+            (function () {
+                try {
+                    var saved = localStorage.getItem("amart_user_lang");
+                    var isMobile =
+                        window.innerWidth <= 768 ||
+                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                            navigator.userAgent,
+                        ) ||
+                        (navigator.maxTouchPoints > 0 &&
+                            window.innerWidth <= 1024);
+                    var navLang = (
+                        navigator.language ||
+                        navigator.userLanguage ||
+                        ""
+                    ).toLowerCase();
+                    var isItalian = navLang.indexOf("it") === 0;
+                    var lang =
+                        saved === "it" || saved === "en"
+                            ? saved
+                            : isMobile && !isItalian
+                              ? "en"
+                              : "it";
+                    document.documentElement.lang = lang;
+                } catch (e) {}
+            })();
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/netlify-identity-widget@1.9.1/build/netlify-identity-widget.min.js"></script>
+    </head>
+    <body
+        class="font-sans font-light text-navy bg-beige-light antialiased overflow-x-hidden pb-[74px] sm:pb-[84px] pt-[84px] md:pb-0"
+    >
+        <!-- ===== HEADER ===== -->
+        <header
+            class="site-header fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-40px)] max-w-[1100px] h-[58px] sm:h-[64px] bg-navy/90 backdrop-blur-xl border border-gold/30 rounded-full z-[200] flex items-center px-4 sm:px-6 shadow-[0_8px_32px_rgba(27,46,80,0.35)] transition-all duration-300"
+        >
+            <div class="w-full flex items-center justify-between">
+                <!-- Logo & Brand Name -->
+                <a
+                    href="/"
+                    class="flex items-center gap-2.5 sm:gap-3 no-underline group py-1"
+                    aria-label="Amart Store Salerno Home"
+                >
+                    <img
+                        src="/logo.png"
+                        alt="Amart Store Salerno Logo"
+                        class="w-10 h-10 sm:w-11 sm:h-11 object-contain flex-shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:scale-105"
+                        width="44"
+                        height="44"
+                    />
+                    <div class="flex flex-col justify-center leading-none">
+                        <span
+                            class="font-serif text-[1.02rem] sm:text-[1.12rem] font-semibold tracking-[0.08em] text-white uppercase drop-shadow-md group-hover:text-gold-light transition-colors duration-200"
+                            >AMART STORE SALERNO</span
+                        >
+                        <span
+                            class="text-[0.5rem] sm:text-[0.55rem] font-semibold tracking-[0.16em] text-gold-light/80 uppercase mt-0.5"
+                            data-i18n="nav.slogan"
+                            >La praticità prima di tutto</span
+                        >
+                    </div>
+                </a>
+
+                <!-- Desktop Nav & Language Switcher -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <nav
+                        id="desktop-nav"
+                        class="hidden md:flex items-center gap-1.5"
+                        aria-label="Navigazione principale"
+                    >
+                        <a
+                            href="/"
+                            data-navpage="home"
+                            data-active={activePage === "home"
+                                ? "true"
+                                : "false"}
+                            class={`text-[0.72rem] font-semibold tracking-[0.12em] uppercase px-4 py-2 rounded-full transition-all duration-200 ${activePage === "home" ? "text-gold-light bg-gold/15 border border-gold/40 shadow-[0_0_12px_rgba(212,168,75,0.2)]" : "text-white/80 hover:text-gold-light hover:bg-white/10"}`}
+                            data-i18n="nav.home">Home</a
+                        >
+                        <a
+                            href="/collezione"
+                            data-navpage="collezione"
+                            data-active={activePage === "collezione"
+                                ? "true"
+                                : "false"}
+                            class={`text-[0.72rem] font-semibold tracking-[0.12em] uppercase px-4 py-2 rounded-full transition-all duration-200 ${activePage === "collezione" ? "text-gold-light bg-gold/15 border border-gold/40 shadow-[0_0_12px_rgba(212,168,75,0.2)]" : "text-white/80 hover:text-gold-light hover:bg-white/10"}`}
+                            data-i18n="nav.collection">Collezione</a
+                        >
+                        <a
+                            href="/acquista"
+                            data-navpage="acquista"
+                            data-active={activePage === "acquista"
+                                ? "true"
+                                : "false"}
+                            class={`text-[0.72rem] font-bold tracking-[0.12em] uppercase px-5 py-2 rounded-full transition-all duration-200 shadow-md ${activePage === "acquista" ? "bg-gold-light text-navy-dark ring-2 ring-gold/80" : "bg-gold text-navy-dark hover:bg-gold-light hover:scale-105"}`}
+                            data-i18n="nav.shop">Negozio & Ordini</a
+                        >
+                    </nav>
+
+                    <!-- Language Switcher Pill -->
+                    <div
+                        id="lang-switcher"
+                        class="relative inline-flex items-center justify-center p-[3px] bg-white/10 backdrop-blur-md border border-gold/30 rounded-full text-[0.66rem] select-none"
+                        aria-label="Seleziona lingua / Select language"
+                    >
+                        <div
+                            id="lang-bubble"
+                            class="absolute pointer-events-none rounded-full box-border"
+                            aria-hidden="true"
+                        >
+                        </div>
+                        <button
+                            data-lang-btn="it"
+                            class="relative z-10 w-[32px] h-[24px] p-0 flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer font-semibold leading-none text-white/50 hover:text-white"
+                            aria-label="Italiano">IT</button
+                        >
+                        <button
+                            data-lang-btn="en"
+                            class="relative z-10 w-[32px] h-[24px] p-0 flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer font-semibold leading-none text-white/50 hover:text-white"
+                            aria-label="English">EN</button
+                        >
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== SLOT ===== -->
+        <slot />
+
+        <!-- ===== FOOTER ===== -->
+        <footer
+            class="bg-navy text-white/50 pt-14 pb-[calc(64px+74px)] md:pb-14 border-t border-gold/15"
+        >
+            <div class="w-full max-w-[1200px] mx-auto px-6">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-[2fr_1fr_1fr] lg:grid-cols-[3fr_1fr_1fr_1fr] gap-12 border-b border-white/8 pb-12 mb-8"
+                >
+                    <!-- Brand -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <img
+                                src="/logo.png"
+                                alt="Amart Store Salerno Logo"
+                                class="w-11 h-11 object-contain flex-shrink-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
+                                width="44"
+                                height="44"
+                            />
+                            <div class="flex flex-col leading-none">
+                                <span
+                                    class="font-serif text-[1.02rem] font-semibold tracking-[0.08em] text-white uppercase"
+                                    >AMART STORE SALERNO</span
+                                >
+                                <span
+                                    class="text-[0.5rem] tracking-[0.16em] text-gold uppercase mt-0.5"
+                                    data-i18n="nav.slogan"
+                                    >La praticità prima di tutto</span
+                                >
+                            </div>
+                        </div>
+                        <p
+                            class="text-[0.82rem] leading-[1.85] text-white/55 max-w-[300px] mb-6"
+                            data-i18n="footer.desc"
+                        >
+                            Amart Store Salerno — Moda donna curata, pratica e
+                            versatile nel centro storico di Salerno.
+                        </p>
+                        <div class="flex gap-3">
+                            <a
+                                href="https://wa.me/393472662754"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="WhatsApp Amart Store Salerno"
+                                class="w-[34px] h-[34px] rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:border-gold hover:text-navy-dark transition-all duration-200"
+                            >
+                                <svg
+                                    class="w-4 h-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a
+                                href="https://www.instagram.com/amartstore_salerno?igsi=c2NyNHp3MXhzczZi&utm_source=qr"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram Amart Store Salerno"
+                                class="w-[34px] h-[34px] rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:border-gold hover:text-navy-dark transition-all duration-200"
+                            >
+                                <svg
+                                    class="w-4 h-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="2"
+                                        width="20"
+                                        height="20"
+                                        rx="5"></rect>
+                                    <path
+                                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                                    ></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
+                                    ></line>
+                                </svg>
+                            </a>
+                            <a
+                                href="tel:+393472662754"
+                                aria-label="Chiama Amart Store Salerno"
+                                class="w-[34px] h-[34px] rounded-full border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:border-gold hover:text-navy-dark transition-all duration-200"
+                            >
+                                <svg
+                                    class="w-4 h-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.97-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mappa Sito -->
+                    <div>
+                        <h4
+                            class="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-gold mb-5"
+                            data-i18n="footer.sitemap"
+                        >
+                            Mappa Sito
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="/"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="nav.home">Home</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="nav.collection">Collezione</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/acquista"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="nav.shop">Negozio & Ordini</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Collezione -->
+                    <div>
+                        <h4
+                            class="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-gold mb-5"
+                            data-i18n="footer.collection"
+                        >
+                            Collezione
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="/collezione#pantaloni"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.pantaloni">Pantaloni</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione#maglie"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.maglie">Maglie</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione#top"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.top">Top & Camicie</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione#abiti"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.abiti">Abiti</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione#giacche"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.giacche">Giacche</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/collezione#accessori"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    data-i18n="category.accessori">Accessori</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Contatti -->
+                    <div>
+                        <h4
+                            class="text-[0.62rem] font-bold tracking-[0.18em] uppercase text-gold mb-5"
+                            data-i18n="footer.contacts"
+                        >
+                            Contatti
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <span data-i18n="footer.phone_label"
+                                    >Telefono & WhatsApp</span
+                                >: <a
+                                    href="tel:+393472662754"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    >+39 347 266 2754</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/acquista"
+                                    class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
+                                    >Via dei Mercanti 131, Salerno</a
+                                >
+                            </li>
+                            <li>
+                                <span class="text-[0.8rem] text-white/40"
+                                    ><span data-i18n="acquista.store_hours_week"
+                                        >Lun–Ven: 10:00–20:30</span
+                                    ><br /><span
+                                        data-i18n="acquista.store_hours_sat"
+                                        >Sabato: 10:00–00:00</span
+                                    ><br /><span
+                                        data-i18n="acquista.store_hours_sun"
+                                        >Domenica: 10:00–22:00</span
+                                    ></span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Legal / Dati Aziendali -->
+                <div class="text-[0.72rem] leading-[1.8] text-white/40">
+                    <p>
+                        <strong class="text-white/65">GA.SA.SRLS</strong> — P.IVA:
+                        01670400656 | REA: SA-502580
+                    </p>
+                    <p>Sede Legale: Calata San Vito 1A-1B, 84126 Salerno</p>
+                    <p>PEC: ga.sasrls@pec.it</p>
+                    <p>
+                        Punto Vendita: Via dei Mercanti 131, 84121 Salerno (SA)
+                    </p>
+                    <p class="mt-2 text-white/20" data-i18n="footer.rights">
+                        © 2026 GA.SA.SRLS · Amart Store Salerno. Tutti i diritti
+                        riservati.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ===== BOTTOM BAR (mobile navigation) ===== -->
+        <nav
+            id="bottom-bar"
+            class="bottom-bar fixed bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-40px)] max-w-[440px] h-[58px] sm:h-[64px] bg-navy-dark/95 backdrop-blur-xl border border-gold/35 rounded-full flex items-center justify-between gap-1.5 z-[200] shadow-[0_12px_40px_rgba(11,19,38,0.45)] p-1.5 md:hidden transition-all duration-300"
+            aria-label="Navigazione rapida mobile"
+        >
+            <a
+                href="/"
+                data-navpage="home"
+                data-active={activePage === "home" ? "true" : "false"}
+                class={`bottom-bar-item flex-1 flex flex-col items-center justify-center gap-0.5 text-[0.6rem] tracking-[0.14em] uppercase h-full rounded-full transition-all duration-200 ${activePage === "home" ? "text-gold-light bg-gold/20 border border-gold/45 shadow-[0_0_12px_rgba(212,168,75,0.25)] font-semibold" : "text-white/70 hover:text-gold-light hover:bg-white/10 font-medium border border-transparent"}`}
+            >
+                <svg
+                    class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"
+                    ></path>
+                </svg>
+                <span data-i18n="nav.home">Home</span>
+            </a>
+            <a
+                href="/collezione"
+                data-navpage="collezione"
+                data-active={activePage === "collezione" ? "true" : "false"}
+                class={`bottom-bar-item flex-1 flex flex-col items-center justify-center gap-0.5 text-[0.6rem] tracking-[0.14em] uppercase h-full rounded-full transition-all duration-200 ${activePage === "collezione" ? "text-gold-light bg-gold/20 border border-gold/45 shadow-[0_0_12px_rgba(212,168,75,0.25)] font-semibold" : "text-white/70 hover:text-gold-light hover:bg-white/10 font-medium border border-transparent"}`}
+            >
+                <svg
+                    class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M20.5 7L12 2 3.5 7 2 12l10 10 10-10-1.5-5zM12 4.5l6.5 3.8L12 12 5.5 8.3 12 4.5z"
+                    ></path>
+                </svg>
+                <span data-i18n="nav.collection">Collezione</span>
+            </a>
+            <a
+                href="/acquista"
+                data-navpage="acquista"
+                data-active={activePage === "acquista" ? "true" : "false"}
+                class={`bottom-bar-item flex-1 flex flex-col items-center justify-center gap-0.5 text-[0.6rem] tracking-[0.14em] uppercase h-full rounded-full transition-all duration-200 ${activePage === "acquista" ? "bg-gold-light text-navy-dark ring-2 ring-gold/80 font-bold shadow-md border border-transparent" : "bg-gold text-navy-dark hover:bg-gold-light hover:scale-105 font-bold shadow-md border border-transparent"}`}
+            >
+                <svg
+                    class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+                    ></path>
+                </svg>
+                <span data-i18n="nav.mobile_order">Ordina</span>
+            </a>
+        </nav>
+
+        <script>
+            import "../scripts/main.ts";
+        </script>
+<script>
+if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+            window.netlifyIdentity.on("login", () => {
+                  document.location.href = "/admin/";
+            });
+        }
+    });
+}
+</script>
+    </body>
+</html>

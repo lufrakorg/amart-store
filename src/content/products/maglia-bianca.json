@@ -1,0 +1,10 @@
+{
+  "id": "maglia-bianca",
+  "name": "Maglia",
+  "category": "maglie",
+  "imageAlt": "bo",
+  "sizes": "S,M,L",
+  "price": "123,99",
+  "categoryLabel": "ssssss",
+  "image": "https://images.unsplash.com/photo-1676731820471-dbf5aa2824c4?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+}

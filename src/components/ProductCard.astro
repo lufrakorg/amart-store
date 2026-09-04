@@ -1,0 +1,100 @@
+---
+export interface Props {
+  id?: string;
+  name: string;
+  category?: 'pantaloni' | 'maglie' | 'top' | 'abiti' | 'giacche' | 'accessori';
+  categoryLabel: string;
+  image: string;
+  imageAlt: string;
+  sizes?: string;
+  price?: string;
+  badge?: string;
+  badgeType?: 'default' | 'outline';
+  showOrderButton?: boolean;
+  showPrice?: boolean;
+  showSizes?: boolean;
+  compact?: boolean;
+  /** Extra Tailwind classes for card width (e.g. carousel vs grid) */
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  category = 'abiti',
+  categoryLabel,
+  image,
+  imageAlt,
+  sizes = '',
+  price = '',
+  badge,
+  badgeType = 'default',
+  showOrderButton = true,
+  showPrice = true,
+  showSizes = true,
+  compact = false,
+  class: extraClass = '',
+} = Astro.props;
+---
+
+<article class={`product-card relative bg-white border border-beige-dark/90 hover:border-gold/50 rounded-2xl overflow-hidden group shadow-sm hover:shadow-[0_12px_28px_rgba(27,46,80,0.09)] transition-all duration-300 flex flex-col justify-between ${extraClass}`} data-product-id={id} data-orig-name={name} data-orig-sizes={sizes}>
+  {badge && (
+    <div class="absolute top-2.5 left-2.5 z-10">
+      <span class={`product-badge inline-block px-2 py-0.5 rounded-full text-[0.55rem] sm:text-[0.58rem] font-bold tracking-[0.14em] uppercase backdrop-blur-md shadow-sm ${badgeType === 'outline' ? 'bg-gold/90 text-navy-dark border border-gold-light/60' : 'bg-navy/85 text-white border border-white/20'}`} data-orig-badge={badge}>
+        {badge}
+      </span>
+    </div>
+  )}
+
+  <!-- Image -->
+  <div class="aspect-[3/4] overflow-hidden bg-beige relative">
+    <img
+      src={image}
+      alt={imageAlt}
+      loading="lazy"
+      class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+  </div>
+
+  <!-- Info -->
+  <div class={`${compact ? 'p-3 sm:p-3.5' : 'p-4 sm:p-5'} flex flex-col flex-1 justify-between ${compact ? 'gap-1.5' : 'gap-3'}`}>
+    <div>
+      <p class="product-category-label text-[0.62rem] sm:text-[0.66rem] font-bold tracking-[0.18em] uppercase text-gold-dark mb-1 flex items-center gap-1.5" data-category={category}>
+        <span class="w-1.5 h-1.5 rounded-full bg-gold inline-block"></span>
+        {categoryLabel}
+      </p>
+      <h3 class={`product-name font-serif ${compact ? 'text-[0.95rem] sm:text-[1.02rem]' : 'text-[1.15rem] sm:text-[1.2rem]'} font-semibold text-navy leading-snug group-hover:text-gold-dark transition-colors duration-200`}>{name}</h3>
+      {showSizes && sizes && (
+        <p class="product-sizes text-[0.75rem] sm:text-[0.78rem] text-slate-500 font-medium mt-0.5">{sizes}</p>
+      )}
+    </div>
+    
+    {(showPrice || showOrderButton) && (
+      <div>
+        {showPrice && price && (
+          <div class={`flex items-baseline justify-between ${showOrderButton ? 'mb-3 pt-2 border-t border-beige-dark/60' : 'pt-1.5 border-t border-beige-dark/60'}`}>
+            <span class="text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-slate-400">Prezzo</span>
+            <p class="font-serif text-[1.15rem] sm:text-[1.25rem] font-bold text-navy">{price}</p>
+          </div>
+        )}
+        
+        {showOrderButton && (
+          <button
+            class="w-full py-2.5 px-3 border border-gold/40 rounded-full bg-beige-light hover:bg-gold hover:border-gold hover:text-navy-dark text-[0.68rem] font-bold tracking-[0.14em] uppercase text-navy cursor-pointer transition-all duration-200 min-h-[42px] flex items-center justify-center gap-2 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+            data-order-product={name}
+            data-order-price={price}
+            data-order-size={sizes}
+            data-i18n="card.order"
+          >
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+            <span>Ordina su WhatsApp</span>
+          </button>
+        )}
+      </div>
+    )}
+  </div>
+</article>
+
