@@ -1,7 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { products } from "../data/products.ts";
+import { getCollection } from "astro:content";
+
+const rawProducts = await getCollection("products");
+const products = rawProducts.map((p) => ({ id: p.id, ...p.data }));
 
 const categories = [
     { label: "Tutti", filter: "tutti", key: "collezione.filter_all" },
