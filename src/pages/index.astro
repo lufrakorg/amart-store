@@ -1,0 +1,882 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ReviewCard from "../components/ReviewCard.astro";
+import { getCollection } from "astro:content";
+import { reviews } from "../data/reviews";
+
+const rawProducts = await getCollection("products");
+const featuredProducts = rawProducts
+    .map((p) => ({ id: p.id, ...p.data }))
+    .slice(0, 6);
+---
+
+<Layout
+    title="Amart Store Salerno"
+    description="Amart Store Salerno — Moda donna curata e versatile in Via dei Mercanti 131. Spedizioni 24/48h in tutta Italia e ritiro in sede su appuntamento."
+    activePage="home"
+>
+    <!-- ===== MARQUEE ===== -->
+    <div
+        class="bg-navy border-b border-gold/15 overflow-hidden h-[40px] flex items-center shadow-inner"
+        aria-hidden="true"
+    >
+        <div class="flex animate-marquee whitespace-nowrap">
+            <span
+                class="text-[0.7rem] font-semibold tracking-[0.16em] uppercase text-white/80 pr-16 flex-shrink-0 flex items-center gap-3"
+                data-i18n="marquee.text"
+            >
+                Amart Store Salerno — La praticità prima di tutto — Spedizioni
+                in 24/48h in tutta Italia — Via dei Mercanti 131 — Ordini
+                diretti via WhatsApp — Ritiro in sede su appuntamento —
+            </span>
+            <span
+                class="text-[0.7rem] font-semibold tracking-[0.16em] uppercase text-white/80 pr-16 flex-shrink-0 flex items-center gap-3"
+                data-i18n="marquee.text"
+                aria-hidden="true"
+            >
+                Amart Store Salerno — La praticità prima di tutto — Spedizioni
+                in 24/48h in tutta Italia — Via dei Mercanti 131 — Ordini
+                diretti via WhatsApp — Ritiro in sede su appuntamento —
+            </span>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section
+        class="hero relative h-[90vh] min-h-[560px] flex items-end overflow-hidden bg-navy-dark"
+        aria-label="Copertina Amart Store Salerno"
+    >
+        <div
+            class="hero-bg absolute inset-0 bg-[url('/images/boutique/hero-bg.webp')] bg-cover bg-center opacity-80 transition-all duration-[1200ms] scale-[1.04]"
+        >
+        </div>
+
+        <!-- Cinematic gradients: coastal navy to sunlit warm atmosphere -->
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/30 to-navy/20"
+        >
+        </div>
+
+        <!-- Ambient golden light glow -->
+        <div
+            class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none animate-orb-pulse"
+        >
+        </div>
+
+        <div
+            class="relative z-10 w-full max-w-[1200px] mx-auto px-6 pb-16 pt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:items-end"
+        >
+            <!-- Left -->
+            <div>
+                <h1
+                    class="fade-in font-serif font-semibold text-white leading-[1.04] tracking-[-0.01em] mb-6 drop-shadow-md"
+                    style="font-size:clamp(2.6rem,6.2vw,4.8rem)"
+                    data-i18n-html="hero.title_html"
+                >
+                    Stile, Luce &amp;
+                    <br />
+                    <em class="italic font-light text-gold-light">
+                        Praticità Quotidiana
+                    </em>
+                </h1>
+
+                <p
+                    class="fade-in delay-2 text-[0.95rem] font-normal text-white/85 leading-[1.8] mb-8 max-w-[460px] md:hidden"
+                    data-i18n-html="hero.desc"
+                >
+                    La praticità prima di tutto.
+                    <br />
+                    Capi versatili che uniscono le ultime tendenze alla libertà e
+                    alla freschezza del mare.
+                </p>
+
+                <div class="fade-in delay-2 flex flex-col sm:flex-row gap-3.5">
+                    <a
+                        href="/collezione"
+                        class="btn-shimmer inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gold text-navy-dark rounded-full text-[0.78rem] font-bold tracking-[0.1em] uppercase hover:bg-gold-light transition-all duration-300 min-h-[50px] shadow-[0_8px_24px_rgba(212,168,75,0.35)] hover:scale-105 hover:shadow-[0_12px_32px_rgba(212,168,75,0.5)]"
+                    >
+                        <span data-i18n="hero.cta_collection">Esplora Collezione</span>
+                        <span>→</span>
+                    </a>
+                    <a
+                        href="/acquista"
+                        class="btn-shimmer inline-flex items-center justify-center px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/40 rounded-full text-[0.78rem] font-semibold tracking-[0.1em] uppercase text-white hover:bg-white/20 transition-all duration-300 min-h-[50px] hover:scale-105"
+                        data-i18n="hero.cta_contact"
+                    >
+                        Vieni a Trovarci
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right (desktop only) -->
+            <div
+                class="hidden md:flex flex-col items-end gap-5 fade-in delay-3"
+            >
+                <div
+                    class="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 max-w-[380px] text-right shadow-lg"
+                >
+                    <span
+                        class="text-[0.62rem] font-bold tracking-[0.2em] uppercase text-gold-light block mb-1.5"
+                        data-i18n="hero.mood_tag"
+                    >
+                        Il Nostro Mood
+                    </span>
+                    <p
+                        class="text-[0.95rem] font-medium text-white/95 leading-[1.8]"
+                        data-i18n-html="hero.desc"
+                    >
+                        La praticità prima di tutto.
+                        <br />
+                        Capi versatili che uniscono le ultime tendenze alla libertà
+                        e alla freschezza del mare.
+                    </p>
+                </div>
+                <div
+                    class="flex items-center gap-3 text-[0.65rem] font-bold tracking-[0.18em] uppercase text-gold-light [writing-mode:vertical-rl] ml-auto animate-pulse"
+                    data-i18n="hero.scroll"
+                >
+                    Scroll
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== QUICK SERVICE HIGHLIGHTS ===== -->
+    <section
+        class="py-7 bg-navy text-white/90 border-b border-gold/20 shadow-md"
+    >
+        <div class="w-full max-w-[1200px] mx-auto px-6">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left divide-y sm:divide-y-0 sm:divide-x divide-white/10"
+            >
+                <!-- Spedizioni -->
+                <div class="flex items-center gap-4 py-2 sm:px-4 group">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold-light flex-shrink-0 group-hover:scale-105 group-hover:bg-gold group-hover:text-navy-dark transition-all duration-300 shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <rect x="1" y="3" width="15" height="13" rx="1"
+                            ></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"
+                            ></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4
+                            class="text-[0.84rem] font-bold tracking-[0.05em] uppercase text-white mb-0.5"
+                            data-i18n="services.shipping_title"
+                        >
+                            Spedizione Rapida 24/48h
+                        </h4>
+                        <p
+                            class="text-[0.75rem] text-white/60"
+                            data-i18n="services.shipping_sub"
+                        >
+                            In tutta Italia (Lun–Ven, festivi esclusi)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ritiro Sede -->
+                <div
+                    class="flex items-center gap-4 py-2 sm:px-4 pt-4 sm:pt-2 group"
+                >
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold-light flex-shrink-0 group-hover:scale-105 group-hover:bg-gold group-hover:text-navy-dark transition-all duration-300 shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <path
+                                d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                            ></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4
+                            class="text-[0.84rem] font-bold tracking-[0.05em] uppercase text-white mb-0.5"
+                            data-i18n="services.pickup_title"
+                        >
+                            Ritiro in Locale su Appuntamento
+                        </h4>
+                        <p
+                            class="text-[0.75rem] text-white/60"
+                            data-i18n="services.pickup_sub"
+                        >
+                            Nel negozio di Salerno in Via dei Mercanti 131
+                        </p>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div
+                    class="flex items-center gap-4 py-2 sm:px-4 pt-4 sm:pt-2 group"
+                >
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold-light flex-shrink-0 group-hover:scale-105 group-hover:bg-gold group-hover:text-navy-dark transition-all duration-300 shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4
+                            class="text-[0.84rem] font-bold tracking-[0.05em] uppercase text-white mb-0.5"
+                            data-i18n="services.wa_title"
+                        >
+                            Assistenza &amp; Ordini WhatsApp
+                        </h4>
+                        <p
+                            class="text-[0.75rem] text-white/60"
+                            data-i18n="services.wa_sub"
+                        >
+                            +39 347 266 2754 per consigli e disponibilità
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MISSION, OBIETTIVI & VALORI ===== -->
+    <section
+        class="py-20 sm:py-24 bg-beige-light border-b border-beige-dark relative overflow-hidden"
+        aria-labelledby="mission-heading"
+    >
+        <div class="w-full max-w-[1200px] mx-auto px-6">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-start"
+            >
+                <!-- Left: Mission & Obiettivi -->
+                <div class="fade-in">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 border border-gold/35 text-gold-dark text-[0.68rem] font-bold tracking-[0.14em] uppercase mb-3"
+                    >
+                        <span>✨</span>
+                        <span data-i18n="manifesto.eyebrow">
+                            La Nostra Identità
+                        </span>
+                    </div>
+
+                    <h2
+                        id="mission-heading"
+                        class="font-serif font-semibold text-navy leading-[1.2] mb-5"
+                        style="font-size:clamp(1.8rem,3.2vw,2.6rem)"
+                        data-i18n="manifesto.title"
+                    >
+                        La praticità prima di tutto: esaltare la bellezza
+                        autentica.
+                    </h2>
+
+                    <!-- Quote Card -->
+                    <div
+                        class="bg-white border border-gold/30 p-6 sm:p-7 rounded-3xl shadow-[0_8px_30px_rgba(27,46,80,0.05)] mb-8 relative"
+                    >
+                        <span
+                            class="font-serif text-[4rem] text-gold/30 leading-none absolute top-3 left-4 select-none"
+                            aria-hidden="true"
+                        >
+                            &ldquo;
+                        </span>
+                        <p
+                            class="text-[0.95rem] leading-[1.85] text-slate-700 font-normal italic relative z-10 pl-6"
+                            data-i18n="manifesto.desc"
+                        >
+                            "La nostra mission è esaltare la bellezza autentica
+                            di ogni donna attraverso un abbigliamento che la
+                            faccia sentire una vera protagonista: sempre al
+                            centro dell'attenzione, ma con innata semplicità ed
+                            eleganza. Ci ispiriamo alla libertà e alla luce del
+                            mare per creare collezioni capaci di unire lo stile
+                            più attuale al comfort del look casual di tutti i
+                            giorni."
+                        </p>
+                    </div>
+
+                    <!-- Obiettivi List -->
+                    <div class="space-y-4">
+                        <h3
+                            class="text-[0.75rem] font-bold tracking-[0.16em] uppercase text-navy border-b border-beige-dark pb-2"
+                        >
+                            <span data-i18n="objectives.title">I Nostri Obiettivi</span>
+                        </h3>
+
+                        <div
+                            class="grid grid-cols-[36px_1fr] gap-3 items-start p-3.5 rounded-2xl hover:bg-white transition-colors duration-200"
+                        >
+                            <span
+                                class="w-8 h-8 rounded-xl bg-gold/15 text-navy font-serif font-bold text-sm flex items-center justify-center shadow-sm"
+                            >
+                                1
+                            </span>
+                            <div>
+                                <h4
+                                    class="text-[0.9rem] font-bold text-navy mb-1"
+                                    data-i18n="objectives.point1_title"
+                                >
+                                    Valorizzare la Femminilità
+                                </h4>
+                                <p
+                                    class="text-[0.82rem] text-slate-600 leading-[1.65]"
+                                    data-i18n="objectives.point1_desc"
+                                >
+                                    Creare capi che facciano sentire ogni donna
+                                    affascinante, sicura di sé e protagonista in
+                                    ogni occasione.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-[36px_1fr] gap-3 items-start p-3.5 rounded-2xl hover:bg-white transition-colors duration-200"
+                        >
+                            <span
+                                class="w-8 h-8 rounded-xl bg-gold/15 text-navy font-serif font-bold text-sm flex items-center justify-center shadow-sm"
+                            >
+                                2
+                            </span>
+                            <div>
+                                <h4
+                                    class="text-[0.9rem] font-bold text-navy mb-1"
+                                    data-i18n="objectives.point2_title"
+                                >
+                                    Rendere il Bello Accessibile
+                                </h4>
+                                <p
+                                    class="text-[0.82rem] text-slate-600 leading-[1.65]"
+                                    data-i18n="objectives.point2_desc"
+                                >
+                                    Offrire una qualità accurata a un prezzo
+                                    equo, dimostrando che la vera eleganza non
+                                    deve necessariamente richiedere grandi
+                                    cifre.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-[36px_1fr] gap-3 items-start p-3.5 rounded-2xl hover:bg-white transition-colors duration-200"
+                        >
+                            <span
+                                class="w-8 h-8 rounded-xl bg-gold/15 text-navy font-serif font-bold text-sm flex items-center justify-center shadow-sm"
+                            >
+                                3
+                            </span>
+                            <div>
+                                <h4
+                                    class="text-[0.9rem] font-bold text-navy mb-1"
+                                    data-i18n="objectives.point3_title"
+                                >
+                                    Unire Tendenza e Praticità
+                                </h4>
+                                <p
+                                    class="text-[0.82rem] text-slate-600 leading-[1.65]"
+                                    data-i18n="objectives.point3_desc"
+                                >
+                                    Proporre un abbigliamento sempre alla moda
+                                    ma versatile, adatto al ritmo della vita
+                                    quotidiana.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Image & 3 Valori -->
+                <div class="fade-in delay-1 flex flex-col gap-6">
+                    <div
+                        class="aspect-[4/3] overflow-hidden bg-beige border border-beige-dark rounded-3xl shadow-md group relative"
+                    >
+                        <img
+                            src="/images/boutique/exterior.webp"
+                            alt="Amart Store Salerno — Negozio Abbigliamento Donna"
+                            loading="lazy"
+                            width="600"
+                            height="450"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div
+                            class="absolute bottom-4 left-4 right-4 bg-navy/90 backdrop-blur-md border border-gold/30 p-4 rounded-2xl text-white flex items-center justify-between shadow-lg"
+                        >
+                            <div>
+                                <span
+                                    class="text-[0.6rem] font-bold tracking-[0.2em] uppercase text-gold-light block"
+                                    data-i18n="store.exterior_tag"
+                                >
+                                    Negozio Salerno
+                                </span>
+                                <p
+                                    class="text-[0.95rem] font-serif font-semibold"
+                                >
+                                    Via dei Mercanti 131
+                                </p>
+                            </div>
+                            <a
+                                href="/acquista"
+                                class="px-4 py-2 bg-gold text-navy-dark rounded-full text-[0.68rem] font-bold uppercase hover:bg-gold-light transition-all"
+                                data-i18n="store.exterior_directions"
+                            >
+                                Indicazioni
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Valori 3 Cards -->
+                    <div class="mt-2">
+                        <div
+                            class="flex items-center justify-between border-b border-gold/20 pb-2.5 mb-4"
+                        >
+                            <h3
+                                class="text-[0.75rem] font-bold tracking-[0.16em] uppercase text-navy flex items-center gap-2"
+                            >
+                                <span
+                                    class="w-2 h-2 rounded-full bg-gold inline-block shadow-[0_0_8px_rgba(212,168,75,0.6)]"
+                                ></span>
+                                <span data-i18n="values.title">I Nostri Valori Fondamentali</span>
+                            </h3>
+                            <span
+                                class="text-[0.62rem] text-center font-bold tracking-[0.18em] text-gold-dark uppercase bg-gold/10 px-2.5 py-0.5 rounded-full border border-gold/25"
+                                data-i18n="values.essence_tag"
+                            >
+                                Essenza Amart
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                            <!-- Valore 1 -->
+                            <div
+                                class="group relative p-4 sm:p-5 bg-gradient-to-b from-white via-white to-amber-50/30 border border-gold/25 hover:border-gold rounded-2xl shadow-[0_4px_16px_rgba(27,46,80,0.04)] hover:shadow-[0_12px_28px_rgba(212,168,75,0.18)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+                            >
+                                <div
+                                    class="absolute -top-10 -right-10 w-20 h-20 bg-gold/10 rounded-full blur-xl pointer-events-none group-hover:bg-gold/20 transition-all duration-300"
+                                >
+                                </div>
+                                <div class="relative z-10">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold/20 to-gold/5 border border-gold/40 flex items-center justify-center text-gold-dark group-hover:bg-gold group-hover:text-navy-dark group-hover:rotate-6 group-hover:scale-105 transition-all duration-300 shadow-sm mb-3.5"
+                                    >
+                                        <svg
+                                            class="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"
+                                            ></path>
+                                            <path
+                                                d="M19 3l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"
+                                                stroke-width="1.2"></path>
+                                        </svg>
+                                    </div>
+                                    <h5
+                                        class="font-serif text-[0.88rem] font-bold text-navy mb-1.5 leading-snug group-hover:text-gold-dark transition-colors duration-200"
+                                        data-i18n="values.point1_title"
+                                    >
+                                        Eleganza Senza Sforzo
+                                    </h5>
+                                    <p
+                                        class="text-[0.74rem] text-slate-600 leading-[1.55] font-normal"
+                                        data-i18n="values.point1_desc"
+                                    >
+                                        Bellezza raffinata dove la semplicità è
+                                        la forma più alta di sofisticatezza.
+                                    </p>
+                                </div>
+                                <div
+                                    class="relative z-10 w-full h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-3.5"
+                                >
+                                </div>
+                            </div>
+
+                            <!-- Valore 2 -->
+                            <div
+                                class="group relative p-4 sm:p-5 bg-gradient-to-b from-white via-white to-amber-50/30 border border-gold/25 hover:border-gold rounded-2xl shadow-[0_4px_16px_rgba(27,46,80,0.04)] hover:shadow-[0_12px_28px_rgba(212,168,75,0.18)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+                            >
+                                <div
+                                    class="absolute -top-10 -right-10 w-20 h-20 bg-amber-400/10 rounded-full blur-xl pointer-events-none group-hover:bg-amber-400/20 transition-all duration-300"
+                                >
+                                </div>
+                                <div class="relative z-10">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-500/5 border border-amber-500/40 flex items-center justify-center text-amber-700 group-hover:bg-amber-500 group-hover:text-white group-hover:scale-105 transition-all duration-300 shadow-sm mb-3.5"
+                                    >
+                                        <svg
+                                            class="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="M6 3h12l4 6-10 12L2 9z"
+                                            ></path>
+                                            <path d="M2 9h20"></path>
+                                            <path d="M10 3l-2 6 4 12 4-12-2-6"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                    <h5
+                                        class="font-serif text-[0.88rem] font-bold text-navy mb-1.5 leading-snug group-hover:text-gold-dark transition-colors duration-200"
+                                        data-i18n="values.point2_title"
+                                    >
+                                        Qualità Trasparente
+                                    </h5>
+                                    <p
+                                        class="text-[0.74rem] text-slate-600 leading-[1.55] font-normal"
+                                        data-i18n="values.point2_desc"
+                                    >
+                                        Tessuti e dettagli curati, mantenendo il
+                                        valore d'acquisto alla portata di tutte.
+                                    </p>
+                                </div>
+                                <div
+                                    class="relative z-10 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-3.5"
+                                >
+                                </div>
+                            </div>
+
+                            <!-- Valore 3 -->
+                            <div
+                                class="group relative p-4 sm:p-4.5 bg-gradient-to-b from-white via-white to-sea/5 border border-gold/25 hover:border-sea rounded-2xl shadow-[0_4px_16px_rgba(27,46,80,0.04)] hover:shadow-[0_12px_28px_rgba(74,171,181,0.22)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+                            >
+                                <div
+                                    class="absolute -top-10 -right-10 w-20 h-20 bg-sea/10 rounded-full blur-xl pointer-events-none group-hover:bg-sea/20 transition-all duration-300"
+                                >
+                                </div>
+                                <div class="relative z-10">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-sea/20 to-sea/5 border border-sea/40 flex items-center justify-center text-sea group-hover:bg-sea group-hover:text-white group-hover:-rotate-6 group-hover:scale-105 transition-all duration-300 shadow-sm mb-3.5"
+                                    >
+                                        <svg
+                                            class="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M2 12c2.5 0 3.5-3 6-3s3.5 3 6 3 3.5-3 6-3 3.5 3 6 3"
+                                            ></path>
+                                            <path
+                                                d="M2 17c2.5 0 3.5-3 6-3s3.5 3 6 3 3.5-3 6-3 3.5 3 6 3"
+                                            ></path>
+                                            <path
+                                                d="M2 7c2.5 0 3.5-3 6-3s3.5 3 6 3 3.5-3 6-3 3.5 3 6 3"
+                                                stroke-width="1.2"
+                                                stroke-opacity="0.6"></path>
+                                        </svg>
+                                    </div>
+                                    <h5
+                                        class="font-serif text-[0.88rem] font-bold text-navy mb-1.5 leading-snug group-hover:text-sea transition-colors duration-200"
+                                        data-i18n="values.point3_title"
+                                    >
+                                        Ispirazione Marina
+                                    </h5>
+                                    <p
+                                        class="text-[0.74rem] text-slate-600 leading-[1.55] font-normal"
+                                        data-i18n="values.point3_desc"
+                                    >
+                                        Il mare come radice: freschezza, senso
+                                        di libertà, colori e stile senza tempo.
+                                    </p>
+                                </div>
+                                <div
+                                    class="relative z-10 w-full h-[2px] bg-gradient-to-r from-transparent via-sea to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-3.5"
+                                >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURED CAROUSEL ===== -->
+    <section
+        class="py-20 bg-beige border-y border-beige-dark"
+        aria-labelledby="featured-heading"
+    >
+        <div class="w-full max-w-[1200px] mx-auto px-6 mb-6">
+            <div
+                class="fade-in mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+            >
+                <div>
+                    <p
+                        class="text-[0.65rem] font-bold tracking-[0.22em] uppercase text-gold-dark mb-2"
+                        data-i18n="featured.eyebrow"
+                    >
+                        Selezione in Evidenza
+                    </p>
+                    <h2
+                        id="featured-heading"
+                        class="font-serif font-normal text-navy mb-3"
+                        style="font-size:clamp(1.8rem,4vw,3rem)"
+                        data-i18n="featured.title"
+                    >
+                        Capi della Stagione
+                    </h2>
+                    <div class="w-10 h-[2px] bg-gold rounded-full"></div>
+                </div>
+                <p
+                    class="text-[0.88rem] text-slate-600 max-w-[420px]"
+                    data-i18n="featured.desc"
+                >
+                    Dalla vita quotidiana alle occasioni speciali: capi pratici,
+                    versatili e ricchi di stile.
+                </p>
+            </div>
+        </div>
+
+        <!-- Auto-scroll track container -->
+        <div
+            class="featured-marquee-container relative overflow-hidden py-3 select-none"
+        >
+            <div
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-r from-beige to-transparent z-10 pointer-events-none"
+            >
+            </div>
+            <div
+                class="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-beige to-transparent z-10 pointer-events-none"
+            >
+            </div>
+
+            <div
+                class="featured-auto-track flex gap-5 w-max animate-featured-scroll"
+                id="featured-track"
+            >
+                {
+                    [
+                        ...featuredProducts,
+                        ...featuredProducts,
+                        ...featuredProducts,
+                    ].map((p, i) => (
+                        <ProductCard
+                            id={p.id}
+                            name={p.name}
+                            category={p.category}
+                            image={p.image}
+                            badge={p.badge}
+                            badgeType={p.badgeType}
+                            showOrderButton={false}
+                            showPrice={false}
+                            showSizes={false}
+                            compact={true}
+                            class="w-[165px] sm:w-[190px] md:w-[210px] flex-shrink-0"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="text-center mt-12 px-6">
+            <a
+                href="/collezione"
+                class="inline-flex items-center justify-center px-8 py-3.5 border border-navy rounded-full text-[0.7rem] font-bold tracking-[0.16em] uppercase text-navy hover:bg-navy hover:text-white transition-all duration-300 min-h-[48px] shadow-sm hover:scale-105"
+                data-i18n="featured.all_btn"
+            >
+                Vedi Tutto il Catalogo
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS AUTO-SCROLL ===== -->
+    <section
+        class="py-24 bg-beige-light overflow-hidden"
+        aria-labelledby="reviews-heading"
+    >
+        <div class="w-full max-w-[1200px] mx-auto px-6 mb-12">
+            <div class="text-center fade-in">
+                <p
+                    class="text-[0.65rem] font-bold tracking-[0.22em] uppercase text-gold-dark mb-3"
+                    data-i18n="reviews.eyebrow"
+                >
+                    Esperienze &amp; Recensioni
+                </p>
+                <h2
+                    id="reviews-heading"
+                    class="font-serif font-normal text-navy mb-3"
+                    style="font-size:clamp(1.8rem,4vw,3rem)"
+                    data-i18n="reviews.title"
+                >
+                    La Voce delle Nostre Clienti
+                </h2>
+                <div class="w-10 h-[2px] bg-gold mx-auto mb-4 rounded-full">
+                </div>
+                <p
+                    class="text-[0.88rem] text-slate-500 max-w-[480px] mx-auto"
+                    data-i18n="reviews.desc"
+                >
+                    Parole di chi vive la moda Amart Store Salerno tra stile,
+                    comfort e praticità.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="reviews-marquee-container relative overflow-hidden py-4 select-none"
+        >
+            <div
+                class="absolute left-0 top-0 bottom-0 w-12 md:w-28 bg-gradient-to-r from-beige-light to-transparent z-10 pointer-events-none"
+            >
+            </div>
+            <div
+                class="absolute right-0 top-0 bottom-0 w-12 md:w-28 bg-gradient-to-l from-beige-light to-transparent z-10 pointer-events-none"
+            >
+            </div>
+
+            <div
+                class="reviews-auto-track flex gap-6 w-max animate-reviews-scroll"
+                id="reviews-track"
+            >
+                {
+                    [...reviews, ...reviews, ...reviews].map((r) => (
+                        <ReviewCard
+                            initials={r.initials}
+                            name={r.name}
+                            city={r.city}
+                            stars={r.stars}
+                            body={r.body}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="w-full max-w-[1200px] mx-auto px-6">
+            <div
+                class="flex gap-10 sm:gap-16 justify-center flex-wrap text-center border-t border-beige-dark pt-12 mt-12"
+            >
+                <div class="fade-in p-4">
+                    <div
+                        class="font-serif text-[2.6rem] font-bold text-navy leading-none mb-2"
+                    >
+                        100%
+                    </div>
+                    <div
+                        class="text-[0.62rem] font-bold tracking-[0.2em] uppercase text-gold-dark"
+                        data-i18n="stats.curated"
+                    >
+                        Moda Donna &amp; Praticità
+                    </div>
+                </div>
+                <div class="fade-in delay-1 p-4">
+                    <div
+                        class="font-serif text-[2.6rem] font-bold text-navy leading-none mb-2"
+                    >
+                        24/48h
+                    </div>
+                    <div
+                        class="text-[0.62rem] font-bold tracking-[0.2em] uppercase text-gold-dark"
+                        data-i18n="stats.shipping"
+                    >
+                        Consegna Rapida Italia
+                    </div>
+                </div>
+                <div class="fade-in delay-2 p-4">
+                    <div
+                        class="font-serif text-[2.6rem] font-bold text-navy leading-none mb-2"
+                    >
+                        4.9/5
+                    </div>
+                    <div
+                        class="text-[0.62rem] font-bold tracking-[0.2em] uppercase text-gold-dark"
+                        data-i18n="stats.rating"
+                    >
+                        Soddisfazione Clienti
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section
+        class="py-20 sm:py-24 bg-navy text-center border-t border-gold/20 relative overflow-hidden"
+        aria-label="Invito alla visita"
+    >
+        <div
+            class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden"
+            aria-hidden="true"
+        >
+            <div
+                class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-gold/10 blur-3xl"
+            >
+            </div>
+            <div
+                class="absolute -bottom-16 -right-16 w-80 h-80 rounded-full bg-sea/10 blur-3xl"
+            >
+            </div>
+        </div>
+        <div class="w-full max-w-[1200px] mx-auto px-6 fade-in relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/30 text-gold-light text-[0.68rem] font-bold tracking-[0.16em] uppercase mb-4"
+            >
+                <span>📍</span>
+                <span data-i18n="cta.location_badge">
+                    Salerno Centro Storico · Via dei Mercanti 131
+                </span>
+            </div>
+            <h2
+                class="font-serif font-semibold text-white mb-4"
+                style="font-size:clamp(1.9rem,4vw,3.2rem)"
+                data-i18n="cta.title"
+            >
+                Vieni a trovarci in Via dei Mercanti a Salerno.
+            </h2>
+            <p
+                class="text-[0.95rem] text-white/70 mb-10 max-w-[620px] mx-auto leading-[1.8]"
+                data-i18n="cta.desc"
+            >
+                Scopri le collezioni in negozio in Via dei Mercanti 131 o ordina
+                comodamente via WhatsApp con spedizione 24/48h.
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a
+                    href="/collezione"
+                    class="inline-flex items-center justify-center px-8 py-3.5 bg-gold text-navy-dark rounded-full text-[0.74rem] font-bold tracking-[0.1em] uppercase hover:bg-gold-light transition-all duration-300 min-h-[50px] hover:scale-105 shadow-lg"
+                    data-i18n="cta.collection_btn"
+                >
+                    Esplora la Collezione
+                </a>
+                <a
+                    href="/acquista"
+                    class="inline-flex items-center justify-center px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/40 rounded-full text-[0.74rem] font-semibold tracking-[0.1em] uppercase text-white hover:bg-white/20 transition-all duration-300 min-h-[50px] hover:scale-105"
+                    data-i18n="cta.location_btn"
+                >
+                    Dove Siamo &amp; Contatti
+                </a>
+            </div>
+        </div>
+    </section>
+</Layout>

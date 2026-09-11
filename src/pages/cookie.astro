@@ -1,0 +1,216 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Cookie Policy — Amart Store Salerno | GA.SA.SRLS"
+    description="Informativa estesa sui Cookie di Amart Store Salerno ai sensi delle Linee Guida del Garante Privacy e della Direttiva ePrivacy. Gestione delle preferenze e trasparenza."
+    activePage="cookie"
+>
+    <!-- ===== PAGE HEADER ===== -->
+    <section class="py-14 sm:py-16 bg-navy border-b border-gold/20" aria-label="Intestazione Cookie Policy">
+        <div class="w-full max-w-[1000px] mx-auto px-6 fade-in">
+            <nav class="flex items-center gap-2 text-[0.72rem] tracking-wider uppercase text-gold-light/80 mb-3" aria-label="Breadcrumb">
+                <a href="/" class="hover:text-white transition-colors duration-200" data-i18n="nav.home">Home</a>
+                <span>/</span>
+                <span class="text-gold-light font-semibold" data-i18n="cookie_page.breadcrumb">Cookie Policy</span>
+            </nav>
+            <h1 class="font-serif font-semibold text-white mb-3 text-3xl sm:text-4xl lg:text-5xl" data-i18n="cookie_page.title">
+                Cookie Policy
+            </h1>
+            <p class="text-[0.95rem] text-white/70 max-w-[650px] leading-relaxed" data-i18n="cookie_page.desc">
+                Informativa estesa sull'uso dei cookie e delle tecnologie di memorizzazione locale, redatta in conformità al Regolamento UE 2016/679 (GDPR) e alle Linee Guida del Garante per la Protezione dei Dati Personali.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="w-full max-w-[1000px] mx-auto px-6 py-12 sm:py-16">
+        <div class="space-y-10">
+
+            <!-- Card: Pannello Rapido Gestione Consenso -->
+            <section class="bg-gradient-to-br from-navy via-navy-light to-navy-dark text-white border border-gold/35 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(11,19,38,0.2)]">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                    <div>
+                        <span class="text-[0.7rem] font-bold tracking-[0.16em] uppercase text-gold-light" data-i18n="cookie_page.consent_tag">Gestione Consenso</span>
+                        <h2 class="text-xl sm:text-2xl font-serif text-white mt-1" data-i18n="cookie_page.consent_title">Le tue preferenze sui Cookie</h2>
+                        <p class="text-[0.88rem] text-white/75 mt-1 max-w-[560px]" data-i18n="cookie_page.consent_desc">
+                            In qualsiasi momento puoi modificare o revocare la tua scelta relativa all'utilizzo dei cookie non strettamente necessari.
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        id="open-cookie-settings-hero"
+                        class="self-start sm:self-center flex-shrink-0 px-5 py-2.5 rounded-full bg-gold text-navy-dark font-bold text-[0.82rem] tracking-wider uppercase hover:bg-gold-light hover:scale-105 transition-all duration-200 shadow-md cursor-pointer"
+                        data-i18n="cookie_page.consent_btn"
+                    >
+                        Modifica Preferenze
+                    </button>
+                </div>
+            </section>
+
+            <!-- Card: Cosa sono i Cookie -->
+            <section class="bg-white border border-sand/30 rounded-2xl p-6 sm:p-9 shadow-[0_4px_24px_rgba(27,46,80,0.04)]">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-navy font-serif font-bold text-sm">
+                        1
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-serif text-navy" data-i18n="cookie_page.section1_title">Cosa sono i Cookie?</h2>
+                </div>
+                <p class="text-[0.95rem] text-navy/80 leading-relaxed mb-3" data-i18n="cookie_page.section1_p1">
+                    I cookie sono piccoli file di testo che i siti web visitati inviano al terminale dell'utente (computer, tablet o smartphone), dove vengono memorizzati per poi essere ritrasmessi agli stessi siti alla successiva visita.
+                </p>
+                <p class="text-[0.95rem] text-navy/80 leading-relaxed" data-i18n="cookie_page.section1_p2">
+                    I cookie permettono al sito web di ricordare le tue azioni e preferenze (ad esempio la lingua di navigazione o il consenso prestato), evitando che tu debba reinserirle quando torni a visitare il sito o navighi da una pagina all'altra.
+                </p>
+            </section>
+
+            <!-- Card: Tipologie di Cookie Impiegati -->
+            <section class="bg-white border border-sand/30 rounded-2xl p-6 sm:p-9 shadow-[0_4px_24px_rgba(27,46,80,0.04)]">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-navy font-serif font-bold text-sm">
+                        2
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-serif text-navy" data-i18n="cookie_page.section2_title">Tipologie di Cookie Utilizzati</h2>
+                </div>
+                
+                <div class="space-y-4 text-[0.92rem]">
+                    <div class="p-5 bg-beige-light border border-sand/30 rounded-xl">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[0.7rem] font-bold bg-navy/10 text-navy uppercase tracking-wider" data-i18n="cookie_page.badge_necessary">Necessari</span>
+                            <h3 class="font-serif text-base font-semibold text-navy" data-i18n="cookie_page.itemA_title">A. Cookie Tecnici e di Funzionalità</h3>
+                        </div>
+                        <p class="text-navy/80 leading-relaxed" data-i18n="cookie_page.itemA_desc">
+                            Questi cookie e strumenti di archiviazione locale sono indispensabili per il corretto funzionamento del sito e per consentire la navigazione ordinaria e sicura. Sono utilizzati per memorizzare la lingua selezionata (italiano o inglese) e la scelta in merito all'informativa cookie. L'infrastruttura di hosting (Netlify) ed i relativi moduli amministrativi di gestione dei contenuti (Decap CMS / Netlify Identity) non installano cookie di tracciamento o profilazione sui visitatori del sito. Per l'installazione dei cookie tecnici non è richiesto il preventivo consenso dell'utente.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-beige-light border border-sand/30 rounded-xl">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[0.7rem] font-bold bg-gold/20 text-navy font-semibold uppercase tracking-wider" data-i18n="cookie_page.badge_absent">Assenti</span>
+                            <h3 class="font-serif text-base font-semibold text-navy" data-i18n="cookie_page.itemB_title">B. Cookie di Profilazione (Né Proprietari né di Terze Parti)</h3>
+                        </div>
+                        <p class="text-navy/80 leading-relaxed" data-i18n="cookie_page.itemB_desc">
+                            Amart Store Salerno non utilizza alcun cookie di profilazione, né di prima parte (proprietario) né di terze parti. Sul nostro sito non sono installati pixel di tracciamento pubblicitario (quali Meta Pixel, Google Ads, TikTok Pixel, Criteo o analoghi strumenti di marketing comportamentale) né algoritmi volti a profilare le abitudini, gli interessi o le preferenze di consumo dell'utente.
+                        </p>
+                    </div>
+
+                    <div class="p-5 bg-beige-light border border-sand/30 rounded-xl">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[0.7rem] font-bold bg-sea/20 text-navy font-semibold uppercase tracking-wider" data-i18n="cookie_page.badge_third_party">Terze Parti & Link Esterni</span>
+                            <h3 class="font-serif text-base font-semibold text-navy" data-i18n="cookie_page.itemC_title">C. Servizi Esterni e Canale WhatsApp (Meta Platforms)</h3>
+                        </div>
+                        <p class="text-navy/80 leading-relaxed mb-2" data-i18n-html="cookie_page.itemC_p1_html">
+                            Per offrire un'esperienza visiva curata, il sito carica i Google Fonts (Playfair Display e Nunito) nel rispetto degli standard di privacy. I pulsanti di collegamento a <strong>WhatsApp</strong> (servizio fornito da <em>Meta Platforms Ireland Limited</em> / <em>Meta Platforms, Inc.</em>) e a <strong>Instagram</strong> sono semplici link ipertestuali diretti (URL) e non incorporano script di terze parti che rilasciano cookie prima del click spontaneo dell'utente.
+                        </p>
+                        <p class="text-navy/80 leading-relaxed text-[0.88rem]" data-i18n-html="cookie_page.itemC_p2_html">
+                            Quando l'utente sceglie di cliccare sul link WhatsApp per avviare una conversazione o effettuare un ordine, l'eventuale trasferimento transfrontaliero di dati verso server ubicati al di fuori dello Spazio Economico Europeo (USA) da parte di Meta Platforms non si basa sul quadro 'Privacy Shield' (dichiarato invalido dalla Corte di Giustizia UE nella sentenza <em>Schrems II</em>, C-311/18), bensì sulle <strong>Clausole Contrattuali Standard (Standard Contractual Clauses - SCC)</strong> adottate dalla Commissione Europea ai sensi dell'art. 46 del GDPR e sulla decisione di adeguatezza dell'<strong>EU-U.S. Data Privacy Framework (DPF)</strong>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card: Tabella Cookie di Memorizzazione Locale -->
+            <section class="bg-white border border-sand/30 rounded-2xl p-6 sm:p-9 shadow-[0_4px_24px_rgba(27,46,80,0.04)]">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-navy font-serif font-bold text-sm">
+                        3
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-serif text-navy" data-i18n="cookie_page.section3_title">Tabella Dettagliata dei Cookie e Storage Locale</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-[0.88rem] border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-navy/15 bg-beige/40 text-navy font-serif">
+                                <th class="p-3.5" data-i18n="cookie_page.th_name">Nome Parametro</th>
+                                <th class="p-3.5" data-i18n="cookie_page.th_provider">Fornitore</th>
+                                <th class="p-3.5" data-i18n="cookie_page.th_type">Tipologia</th>
+                                <th class="p-3.5" data-i18n="cookie_page.th_purpose">Finalità</th>
+                                <th class="p-3.5" data-i18n="cookie_page.th_duration">Durata</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-sand/30 text-navy/80">
+                            <tr>
+                                <td class="p-3.5 font-mono text-[0.82rem] font-semibold text-navy">amart_user_lang</td>
+                                <td class="p-3.5" data-i18n="cookie_page.first_party">Prima parte</td>
+                                <td class="p-3.5" data-i18n="cookie_page.tech_storage">Tecnico (Storage Locale)</td>
+                                <td class="p-3.5" data-i18n="cookie_page.row1_purpose">Memorizza la scelta linguistica dell'utente (Italiano o Inglese) per le visite successive</td>
+                                <td class="p-3.5" data-i18n="cookie_page.persistent_12m">Persistente (12 mesi)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-mono text-[0.82rem] font-semibold text-navy">amart_cookie_consent</td>
+                                <td class="p-3.5" data-i18n="cookie_page.first_party">Prima parte</td>
+                                <td class="p-3.5" data-i18n="cookie_page.tech_storage">Tecnico (Storage Locale)</td>
+                                <td class="p-3.5" data-i18n="cookie_page.row2_purpose">Salva lo stato del consenso ai cookie per non riproporre il banner ad ogni pagina</td>
+                                <td class="p-3.5" data-i18n="cookie_page.persistent_12m">Persistente (12 mesi)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-mono text-[0.82rem] font-semibold text-navy">amart_cookie_consent_date</td>
+                                <td class="p-3.5" data-i18n="cookie_page.first_party">Prima parte</td>
+                                <td class="p-3.5" data-i18n="cookie_page.tech_storage">Tecnico (Storage Locale)</td>
+                                <td class="p-3.5" data-i18n="cookie_page.row3_purpose">Registra la data e ora in cui l'utente ha manifestato la propria preferenza</td>
+                                <td class="p-3.5" data-i18n="cookie_page.persistent_12m">Persistente (12 mesi)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Card: Come gestire i Cookie nel Browser -->
+            <section class="bg-white border border-sand/30 rounded-2xl p-6 sm:p-9 shadow-[0_4px_24px_rgba(27,46,80,0.04)]">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-9 h-9 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center text-navy font-serif font-bold text-sm">
+                        4
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-serif text-navy" data-i18n="cookie_page.section4_title">Come Disabilitare o Cancellare i Cookie dal Browser</h2>
+                </div>
+                <p class="text-[0.95rem] text-navy/80 leading-relaxed mb-4" data-i18n="cookie_page.section4_desc">
+                    Puoi bloccare o cancellare i cookie direttamente attraverso le impostazioni del tuo browser web. Di seguito riportiamo i link alle guide ufficiali dei browser più diffusi:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-[0.86rem]">
+                    <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-beige-light border border-sand/40 hover:border-gold hover:bg-beige transition-colors flex items-center justify-between text-navy font-medium">
+                        <span>Google Chrome</span>
+                        <span>→</span>
+                    </a>
+                    <a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-beige-light border border-sand/40 hover:border-gold hover:bg-beige transition-colors flex items-center justify-between text-navy font-medium">
+                        <span>Apple Safari</span>
+                        <span>→</span>
+                    </a>
+                    <a href="https://support.mozilla.org/it/kb/protezione-antitracciamento-avanzata-firefox-desktop" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-beige-light border border-sand/40 hover:border-gold hover:bg-beige transition-colors flex items-center justify-between text-navy font-medium">
+                        <span>Mozilla Firefox</span>
+                        <span>→</span>
+                    </a>
+                    <a href="https://support.microsoft.com/it-it/windows/gestire-i-cookie-in-microsoft-edge-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl bg-beige-light border border-sand/40 hover:border-gold hover:bg-beige transition-colors flex items-center justify-between text-navy font-medium">
+                        <span>Microsoft Edge</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <p class="text-[0.82rem] text-navy/65 mt-4" data-i18n-html="cookie_page.section4_note_html">
+                    <em>Nota:</em> La disabilitazione completa dei cookie tecnici o dello storage locale potrebbe compromettere alcune funzionalità essenziali, come il salvataggio della lingua preferita.
+                </p>
+            </section>
+
+            <!-- Card: Titolare e Contatti -->
+            <section class="bg-beige/60 border border-sand/40 rounded-2xl p-6 sm:p-8">
+                <h3 class="font-serif text-lg font-semibold text-navy mb-2" data-i18n="cookie_page.qa_title">Dubbi o domande sulla presente Cookie Policy?</h3>
+                <p class="text-[0.92rem] text-navy/80 leading-relaxed mb-4" data-i18n-html="cookie_page.qa_desc_html">
+                    Per qualunque chiarimento sulle modalità di trattamento dei dati o sull'impiego dei cookie, puoi contattare il Titolare del trattamento GA.SA.SRLS (Amart Store Salerno) via WhatsApp o telefono al numero <a href="tel:+393472662754" class="font-semibold underline text-navy">+39 347 266 2754</a>.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="/privacy" class="text-[0.82rem] font-semibold text-navy underline hover:text-gold" data-i18n="cookie_page.qa_privacy_link">Leggi anche la Privacy Policy</a>
+                    <span class="text-navy/30">·</span>
+                    <a href="/termini" class="text-[0.82rem] font-semibold text-navy underline hover:text-gold" data-i18n="cookie_page.qa_terms_link">Termini e Condizioni di Vendita</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        document.getElementById("open-cookie-settings-hero")?.addEventListener("click", () => {
+            if (typeof (window as any).openCookieSettings === "function") {
+                (window as any).openCookieSettings();
+            }
+        });
+    </script>
+</Layout>

@@ -1,0 +1,163 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Pagina non trovata (404) — Amart Store Salerno"
+    description="La pagina cercata non è disponibile. Torna alla home o esplora la collezione di moda donna di Amart Store Salerno in Via dei Mercanti 131."
+    activePage="404"
+>
+    <main class="min-h-[75vh] flex items-center justify-center py-16 sm:py-24 px-6 bg-beige-light">
+        <div class="w-full max-w-[840px] mx-auto text-center fade-in">
+
+            <!-- Decorative 404 Display Card -->
+            <div class="bg-navy border border-gold/30 rounded-3xl p-8 sm:p-14 shadow-[0_16px_48px_rgba(27,46,80,0.16)] text-white relative overflow-hidden">
+                
+                <!-- Ambient background glow -->
+                <div class="absolute -top-24 -left-24 w-64 h-64 bg-gold/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+                <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-sea/15 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+                <div class="relative z-10">
+                    <!-- Eyebrow Badge -->
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-[0.72rem] tracking-[0.16em] uppercase text-gold-light mb-6 font-semibold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                        <span data-i18n="404.badge">Errore 404 · Amart Store</span>
+                    </div>
+
+                    <!-- Giant Elegant Typographic 404 -->
+                    <div class="mb-4 select-none">
+                        <span class="font-serif font-light tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-gold-light via-gold to-gold/50 text-7xl sm:text-8xl md:text-9xl leading-none">
+                            404
+                        </span>
+                    </div>
+
+                    <!-- Delicate Divider -->
+                    <div class="flex items-center justify-center gap-3 my-4" aria-hidden="true">
+                        <div class="h-px w-12 bg-gradient-to-r from-transparent to-gold/50"></div>
+                        <span class="text-gold-light text-xs font-serif">✦</span>
+                        <div class="h-px w-12 bg-gradient-to-l from-transparent to-gold/50"></div>
+                    </div>
+
+                    <!-- Title & Description -->
+                    <h1
+                        class="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-white mb-4 leading-tight"
+                        data-i18n="404.title"
+                    >
+                        Pagina Non Trovata
+                    </h1>
+                    <p
+                        class="text-[0.95rem] sm:text-[1.05rem] text-white/75 max-w-[560px] mx-auto leading-relaxed mb-8"
+                        data-i18n="404.desc"
+                    >
+                        Sembra che la pagina che stai cercando non sia disponibile, sia stata spostata o il link non sia corretto.
+                    </p>
+
+                    <!-- Main Action Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-3.5 mb-10">
+                        <a
+                            id="btn-404-home"
+                            href="/"
+                            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold text-navy-dark font-bold text-[0.84rem] tracking-wider uppercase hover:bg-gold-light hover:scale-105 transition-all duration-200 shadow-md cursor-pointer"
+                        >
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            <span data-i18n="404.back_home">Torna alla Home</span>
+                        </a>
+
+                        <a
+                            id="btn-404-collection"
+                            href="/collezione"
+                            class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white font-semibold text-[0.84rem] tracking-wider uppercase hover:bg-white/10 hover:border-white transition-all duration-200 cursor-pointer"
+                        >
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span data-i18n="404.explore_collection">Esplora la Collezione</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Navigation Links -->
+                    <div class="pt-8 border-t border-white/15">
+                        <p class="text-[0.76rem] font-bold tracking-[0.14em] uppercase text-gold-light mb-4" data-i18n="404.quick_links">
+                            Oppure naviga tra i reparti più richiesti:
+                        </p>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <a
+                                href="/collezione#pantaloni"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="category.pantaloni"
+                            >
+                                Pantaloni
+                            </a>
+                            <a
+                                href="/collezione#maglie"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="category.maglie"
+                            >
+                                Maglie
+                            </a>
+                            <a
+                                href="/collezione#top"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="category.top"
+                            >
+                                Top &amp; Camicie
+                            </a>
+                            <a
+                                href="/collezione#abiti"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="category.abiti"
+                            >
+                                Abiti
+                            </a>
+                            <a
+                                href="/collezione#giacche"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="category.giacche"
+                            >
+                                Giacche
+                            </a>
+                            <a
+                                href="/spedizioni-resi"
+                                class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[0.8rem] text-white/80 hover:text-gold-light hover:border-gold/40 hover:bg-white/10 transition-colors duration-200"
+                                data-i18n="footer.shipping_returns"
+                            >
+                                Spedizioni &amp; Resi
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Boutique Assistant Box -->
+            <aside class="mt-8 bg-white border border-sand/40 rounded-2xl p-6 sm:p-8 shadow-[0_4px_24px_rgba(27,46,80,0.04)] flex flex-col sm:flex-row items-center justify-between gap-5 text-left" aria-label="Supporto WhatsApp">
+                <div class="space-y-1">
+                    <h2 class="font-serif text-lg font-semibold text-navy" data-i18n="404.ask_wa_title">
+                        Cercavi un capo visto in vetrina o sui social?
+                    </h2>
+                    <p class="text-[0.88rem] text-navy/75 max-w-[500px]" data-i18n="404.ask_wa_desc">
+                        Scrivici direttamente su WhatsApp: il nostro staff in boutique a Salerno verificherà la disponibilità in tempo reale.
+                    </p>
+                </div>
+                <a
+                    id="btn-404-wa"
+                    href="https://wa.me/393472662754?text=Salve,%20stavo%20cercando%20un%20capo%20sul%20vostro%20sito%20ma%20la%20pagina%20non%20risulta%20disponibile.%20Potete%20aiutarmi?"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] text-white font-bold text-[0.82rem] tracking-wider uppercase hover:bg-[#1EBE5D] hover:scale-105 transition-all duration-200 shadow-sm flex-shrink-0 cursor-pointer"
+                >
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.771.776 2.796.776 3.18 0 5.767-2.587 5.767-5.767.001-3.18-2.585-5.761-5.767-5.761zm3.376 8.204c-.14.394-.71.758-1.009.808-.299.05-.688.081-2.146-.522-1.865-.772-3.056-2.69-3.15-2.814-.093-.124-.76-1.012-.76-1.93 0-.919.479-1.371.648-1.559.17-.188.371-.235.495-.235.124 0 .248.001.356.007.114.006.266-.043.416.319.155.375.53 1.297.576 1.391.047.094.078.204.016.329-.062.125-.094.204-.187.313-.094.109-.197.243-.282.327-.094.093-.192.195-.083.382.109.187.483.797 1.036 1.29 1.113.992 1.341 1.055 1.528 1.149.187.093.296.078.406-.047.109-.125.468-.546.593-.733.125-.187.249-.156.421-.093.172.062 1.09.514 1.277.608.187.094.312.14.358.219.046.079.046.453-.094.847z"/>
+                    </svg>
+                    <span data-i18n="404.contact_wa">Chiedi su WhatsApp</span>
+                </a>
+            </aside>
+
+        </div>
+    </main>
+</Layout>
