@@ -17,6 +17,8 @@ export interface Props {
         | string;
 }
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 const { title, description, activePage = "home" } = Astro.props;
 ---
 
@@ -46,6 +48,7 @@ const { title, description, activePage = "home" } = Astro.props;
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="alternate icon" href="/favicon.ico" />
+        <link rel="canonical" href={canonicalURL} />
 
         <script is:inline>
             // Early smartphone & language auto-detection to prevent flash
@@ -76,9 +79,7 @@ const { title, description, activePage = "home" } = Astro.props;
             })();
         </script>
     </head>
-    <body
-        class="font-sans font-light text-navy bg-beige-light antialiased overflow-x-hidden pt-[84px]"
-    >
+    <body class="font-sans font-light text-navy bg-beige-light antialiased overflow-x-hidden pt-[84px]">
         <!-- ===== SCROLL READING PROGRESS BAR ===== -->
         <div
             id="scroll-progress"
@@ -88,9 +89,7 @@ const { title, description, activePage = "home" } = Astro.props;
         ></div>
 
         <!-- ===== HEADER ===== -->
-        <header
-            class="site-header fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-40px)] max-w-[1100px] h-[58px] sm:h-[64px] bg-navy/90 backdrop-blur-xl border border-gold/30 rounded-full z-[200] flex items-center px-4 sm:px-6 shadow-[0_8px_32px_rgba(27,46,80,0.35)] transition-all duration-300"
-        >
+        <header class="site-header fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[calc(100%-24px)] sm:w-[calc(100%-40px)] max-w-[1100px] h-[58px] sm:h-[64px] bg-navy/90 backdrop-blur-xl border border-gold/30 rounded-full z-[200] flex items-center px-4 sm:px-6 shadow-[0_8px_32px_rgba(27,46,80,0.35)] transition-all duration-300">
             <div class="w-full flex items-center justify-between">
                 <!-- Logo & Brand Name -->
                 <a
@@ -106,15 +105,15 @@ const { title, description, activePage = "home" } = Astro.props;
                         height="44"
                     />
                     <div class="flex flex-col justify-center leading-none">
-                        <span
-                            class="font-serif text-[1.02rem] sm:text-[1.12rem] font-semibold tracking-[0.08em] text-white uppercase drop-shadow-md group-hover:text-gold-light transition-colors duration-200"
-                            >AMART STORE SALERNO</span
-                        >
+                        <span class="font-serif text-[1.02rem] sm:text-[1.12rem] font-semibold tracking-[0.08em] text-white uppercase drop-shadow-md group-hover:text-gold-light transition-colors duration-200">
+                            AMART STORE SALERNO
+                        </span>
                         <span
                             class="text-[0.5rem] sm:text-[0.55rem] font-semibold tracking-[0.16em] text-gold-light/80 uppercase mt-0.5"
                             data-i18n="nav.slogan"
-                            >La praticità prima di tutto</span
                         >
+                            La praticità prima di tutto
+                        </span>
                     </div>
                 </a>
 
@@ -128,30 +127,36 @@ const { title, description, activePage = "home" } = Astro.props;
                         <a
                             href="/"
                             data-navpage="home"
-                            data-active={activePage === "home"
-                                ? "true"
-                                : "false"}
+                            data-active={
+                                activePage === "home" ? "true" : "false"
+                            }
                             class={`text-[0.72rem] font-semibold tracking-[0.12em] uppercase px-4 py-2 rounded-full transition-all duration-200 ${activePage === "home" ? "text-gold-light bg-gold/15 border border-gold/40 shadow-[0_0_12px_rgba(212,168,75,0.2)]" : "text-white/80 hover:text-gold-light hover:bg-white/10"}`}
-                            data-i18n="nav.home">Home</a
+                            data-i18n="nav.home"
                         >
+                            Home
+                        </a>
                         <a
                             href="/collezione"
                             data-navpage="collezione"
-                            data-active={activePage === "collezione"
-                                ? "true"
-                                : "false"}
+                            data-active={
+                                activePage === "collezione" ? "true" : "false"
+                            }
                             class={`text-[0.72rem] font-semibold tracking-[0.12em] uppercase px-4 py-2 rounded-full transition-all duration-200 ${activePage === "collezione" ? "text-gold-light bg-gold/15 border border-gold/40 shadow-[0_0_12px_rgba(212,168,75,0.2)]" : "text-white/80 hover:text-gold-light hover:bg-white/10"}`}
-                            data-i18n="nav.collection">Collezione</a
+                            data-i18n="nav.collection"
                         >
+                            Collezione
+                        </a>
                         <a
                             href="/acquista"
                             data-navpage="acquista"
-                            data-active={activePage === "acquista"
-                                ? "true"
-                                : "false"}
+                            data-active={
+                                activePage === "acquista" ? "true" : "false"
+                            }
                             class={`text-[0.72rem] font-bold tracking-[0.12em] uppercase px-5 py-2 rounded-full transition-all duration-200 shadow-md ${activePage === "acquista" ? "bg-gold-light text-navy-dark ring-2 ring-gold/80" : "bg-gold text-navy-dark hover:bg-gold-light hover:scale-105"}`}
-                            data-i18n="nav.shop">Negozio & Ordini</a
+                            data-i18n="nav.shop"
                         >
+                            Negozio & Ordini
+                        </a>
                     </nav>
 
                     <!-- Language Switcher Pill -->
@@ -164,18 +169,21 @@ const { title, description, activePage = "home" } = Astro.props;
                             id="lang-bubble"
                             class="absolute pointer-events-none rounded-full box-border"
                             aria-hidden="true"
-                        >
-                        </div>
+                        ></div>
                         <button
                             data-lang-btn="it"
                             class="relative z-10 w-[32px] h-[24px] p-0 flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer font-semibold leading-none text-white/50 hover:text-white"
-                            aria-label="Italiano">IT</button
+                            aria-label="Italiano"
                         >
+                            IT
+                        </button>
                         <button
                             data-lang-btn="en"
                             class="relative z-10 w-[32px] h-[24px] p-0 flex items-center justify-center rounded-full transition-all duration-200 cursor-pointer font-semibold leading-none text-white/50 hover:text-white"
-                            aria-label="English">EN</button
+                            aria-label="English"
                         >
+                            EN
+                        </button>
                     </div>
                 </div>
             </div>
@@ -185,13 +193,9 @@ const { title, description, activePage = "home" } = Astro.props;
         <slot />
 
         <!-- ===== FOOTER ===== -->
-        <footer
-            class="bg-navy text-white/50 pt-14 pb-[calc(58px+8px)] sm:pb-[calc(64px+8px)] md:pb-14 border-t border-gold/15"
-        >
+        <footer class="bg-navy text-white/50 pt-14 pb-[calc(58px+8px)] sm:pb-[calc(64px+8px)] md:pb-14 border-t border-gold/15">
             <div class="w-full max-w-[1200px] mx-auto px-6">
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1.2fr_1.3fr] gap-10 lg:gap-8 border-b border-white/8 pb-12 mb-8"
-                >
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2.5fr_1fr_1fr_1.2fr_1.3fr] gap-10 lg:gap-8 border-b border-white/8 pb-12 mb-8">
                     <!-- Brand -->
                     <div>
                         <div class="flex items-center gap-3 mb-4">
@@ -203,15 +207,15 @@ const { title, description, activePage = "home" } = Astro.props;
                                 height="44"
                             />
                             <div class="flex flex-col leading-none">
-                                <span
-                                    class="font-serif text-[1.02rem] font-semibold tracking-[0.08em] text-white uppercase"
-                                    >AMART STORE SALERNO</span
-                                >
+                                <span class="font-serif text-[1.02rem] font-semibold tracking-[0.08em] text-white uppercase">
+                                    AMART STORE SALERNO
+                                </span>
                                 <span
                                     class="text-[0.5rem] tracking-[0.16em] text-gold uppercase mt-0.5"
                                     data-i18n="nav.slogan"
-                                    >La praticità prima di tutto</span
                                 >
+                                    La praticità prima di tutto
+                                </span>
                             </div>
                         </div>
                         <p
@@ -239,9 +243,7 @@ const { title, description, activePage = "home" } = Astro.props;
                                     stroke-linejoin="round"
                                     aria-hidden="true"
                                 >
-                                    <path
-                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
-                                    ></path>
+                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                                 </svg>
                             </a>
                             <a
@@ -266,11 +268,14 @@ const { title, description, activePage = "home" } = Astro.props;
                                         y="2"
                                         width="20"
                                         height="20"
-                                        rx="5"></rect>
-                                    <path
-                                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
-                                    ></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"
+                                        rx="5"
+                                    ></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line
+                                        x1="17.5"
+                                        y1="6.5"
+                                        x2="17.51"
+                                        y2="6.5"
                                     ></line>
                                 </svg>
                             </a>
@@ -289,9 +294,7 @@ const { title, description, activePage = "home" } = Astro.props;
                                     stroke-linejoin="round"
                                     aria-hidden="true"
                                 >
-                                    <path
-                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.97-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
-                                    ></path>
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.61 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.97-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
                                 </svg>
                             </a>
                         </div>
@@ -310,22 +313,28 @@ const { title, description, activePage = "home" } = Astro.props;
                                 <a
                                     href="/"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="nav.home">Home</a
+                                    data-i18n="nav.home"
                                 >
+                                    Home
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="nav.collection">Collezione</a
+                                    data-i18n="nav.collection"
                                 >
+                                    Collezione
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/acquista"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="nav.shop">Negozio & Ordini</a
+                                    data-i18n="nav.shop"
                                 >
+                                    Negozio & Ordini
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -343,43 +352,55 @@ const { title, description, activePage = "home" } = Astro.props;
                                 <a
                                     href="/collezione#pantaloni"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.pantaloni">Pantaloni</a
+                                    data-i18n="category.pantaloni"
                                 >
+                                    Pantaloni
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione#maglie"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.maglie">Maglie</a
+                                    data-i18n="category.maglie"
                                 >
+                                    Maglie
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione#top"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.top">Top & Camicie</a
+                                    data-i18n="category.top"
                                 >
+                                    Top & Camicie
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione#abiti"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.abiti">Abiti</a
+                                    data-i18n="category.abiti"
                                 >
+                                    Abiti
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione#giacche"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.giacche">Giacche</a
+                                    data-i18n="category.giacche"
                                 >
+                                    Giacche
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/collezione#accessori"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="category.accessori">Accessori</a
+                                    data-i18n="category.accessori"
                                 >
+                                    Accessori
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -398,30 +419,36 @@ const { title, description, activePage = "home" } = Astro.props;
                                     href="/spedizioni-resi"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
                                     data-i18n="footer.shipping_returns"
-                                    >Spedizioni & Resi</a
                                 >
+                                    Spedizioni & Resi
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/termini"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
                                     data-i18n="footer.terms"
-                                    >Termini di Vendita</a
                                 >
+                                    Termini di Vendita
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/privacy"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="footer.privacy">Privacy Policy</a
+                                    data-i18n="footer.privacy"
                                 >
+                                    Privacy Policy
+                                </a>
                             </li>
                             <li>
                                 <a
                                     href="/cookie"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    data-i18n="footer.cookie">Cookie Policy</a
+                                    data-i18n="footer.cookie"
                                 >
+                                    Cookie Policy
+                                </a>
                             </li>
                             <li>
                                 <button
@@ -446,13 +473,16 @@ const { title, description, activePage = "home" } = Astro.props;
                         </h4>
                         <ul class="space-y-3">
                             <li>
-                                <span data-i18n="footer.phone_label"
-                                    >Telefono & WhatsApp</span
-                                >: <a
+                                <span data-i18n="footer.phone_label">
+                                    Telefono & WhatsApp
+                                </span>
+                                :{" "}
+                                <a
                                     href="tel:+393472662754"
                                     class="text-[0.85rem] text-white/60 hover:text-gold-light transition-colors duration-200"
-                                    >+39 347 266 2754</a
                                 >
+                                    +39 347 266 2754
+                                </a>
                             </li>
                             <li>
                                 <a
@@ -472,86 +502,93 @@ const { title, description, activePage = "home" } = Astro.props;
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         aria-hidden="true"
-                                        ><path
-                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-                                        ></path><polyline
-                                            points="15 3 21 3 21 9"
-                                        ></polyline><line
+                                    >
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line
                                             x1="10"
                                             y1="14"
                                             x2="21"
-                                            y2="3"></line></svg
-                                    >
+                                            y2="3"
+                                        ></line>
+                                    </svg>
                                 </a>
                             </li>
                             <li>
-                                <span class="text-[0.8rem] text-white/40"
-                                    ><span data-i18n="acquista.store_hours_week"
-                                        >Lun–Ven: 10:00–20:30</span
-                                    ><br /><span
-                                        data-i18n="acquista.store_hours_sat"
-                                        >Sabato: 10:00–00:00</span
-                                    ><br /><span
-                                        data-i18n="acquista.store_hours_sun"
-                                        >Domenica: 10:00–22:00</span
-                                    ></span
-                                >
+                                <span class="text-[0.8rem] text-white/40">
+                                    <span data-i18n="acquista.store_hours_week">
+                                        Lun–Ven: 10:00–20:30
+                                    </span>
+                                    <br />
+                                    <span data-i18n="acquista.store_hours_sat">
+                                        Sabato: 10:00–00:00
+                                    </span>
+                                    <br />
+                                    <span data-i18n="acquista.store_hours_sun">
+                                        Domenica: 10:00–22:00
+                                    </span>
+                                </span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Legal / Dati Aziendali e Link Rapidi -->
-                <div
-                    class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-[0.72rem] leading-[1.8] text-white/40"
-                >
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-[0.72rem] leading-[1.8] text-white/40">
                     <div>
                         <p>
-                            <strong class="text-white/65">GA.SA.SRLS</strong> — P.IVA:
-                            01670400656 | REA: SA-502580
+                            <strong class="text-white/65">GA.SA.SRLS</strong> —
+                            P.IVA: 01670400656 | REA: SA-502580
                         </p>
                         <p>
                             Sede Legale: Calata San Vito 1A-1B, 84126 Salerno ·
                             PEC: ga.sasrls@pec.it
                         </p>
                         <p>
-                            Punto Vendita: <a
+                            Punto Vendita:{" "}
+                            <a
                                 href="https://maps.google.com/?q=Via+dei+Mercanti+131,+84121+Salerno"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="hover:text-gold-light underline underline-offset-2 transition-colors duration-200"
                                 title="Apri su Google Maps"
-                                >Via dei Mercanti 131, 84121 Salerno (SA)</a
                             >
+                                Via dei Mercanti 131, 84121 Salerno (SA)
+                            </a>
                         </p>
                     </div>
-                    <div
-                        class="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/55"
-                    >
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/55">
                         <a
                             href="/privacy"
                             class="hover:text-gold-light transition-colors duration-200"
-                            data-i18n="footer.privacy">Privacy Policy</a
+                            data-i18n="footer.privacy"
                         >
+                            Privacy Policy
+                        </a>
                         <span class="text-white/20">·</span>
                         <a
                             href="/cookie"
                             class="hover:text-gold-light transition-colors duration-200"
-                            data-i18n="footer.cookie">Cookie Policy</a
+                            data-i18n="footer.cookie"
                         >
+                            Cookie Policy
+                        </a>
                         <span class="text-white/20">·</span>
                         <a
                             href="/termini"
                             class="hover:text-gold-light transition-colors duration-200"
-                            data-i18n="footer.terms">Termini e Condizioni</a
+                            data-i18n="footer.terms"
                         >
+                            Termini e Condizioni
+                        </a>
                         <span class="text-white/20">·</span>
                         <a
                             href="/spedizioni-resi"
                             class="hover:text-gold-light transition-colors duration-200"
                             data-i18n="footer.shipping_returns"
-                            >Spedizioni e Resi</a
                         >
+                            Spedizioni e Resi
+                        </a>
                     </div>
                 </div>
                 <p
@@ -565,7 +602,10 @@ const { title, description, activePage = "home" } = Astro.props;
         </footer>
 
         <!-- Spacer mobile: estende il colore navy del footer nello spazio del body padding sotto la bottom bar -->
-        <div class="md:hidden bg-navy h-[66px] sm:h-[72px]" aria-hidden="true"></div>
+        <div
+            class="md:hidden bg-navy h-[66px] sm:h-[72px]"
+            aria-hidden="true"
+        ></div>
 
         <!-- ===== BOTTOM BAR (mobile navigation) ===== -->
         <nav
@@ -583,9 +623,7 @@ const { title, description, activePage = "home" } = Astro.props;
                     class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
                     viewBox="0 0 24 24"
                 >
-                    <path
-                        d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"
-                    ></path>
+                    <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"></path>
                 </svg>
                 <span data-i18n="nav.home">Home</span>
             </a>
@@ -599,9 +637,7 @@ const { title, description, activePage = "home" } = Astro.props;
                     class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
                     viewBox="0 0 24 24"
                 >
-                    <path
-                        d="M20.5 7L12 2 3.5 7 2 12l10 10 10-10-1.5-5zM12 4.5l6.5 3.8L12 12 5.5 8.3 12 4.5z"
-                    ></path>
+                    <path d="M20.5 7L12 2 3.5 7 2 12l10 10 10-10-1.5-5zM12 4.5l6.5 3.8L12 12 5.5 8.3 12 4.5z"></path>
                 </svg>
                 <span data-i18n="nav.collection">Collezione</span>
             </a>
@@ -615,9 +651,7 @@ const { title, description, activePage = "home" } = Astro.props;
                     class="w-[18px] h-[18px] stroke-current fill-none stroke-[1.8]"
                     viewBox="0 0 24 24"
                 >
-                    <path
-                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
-                    ></path>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"></path>
                 </svg>
                 <span data-i18n="nav.mobile_order">Ordina</span>
             </a>
