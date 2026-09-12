@@ -1,0 +1,9 @@
+{
+  "name": "Fabio",
+  "category": "top",
+  "image": "https://picsum.photos/200/300",
+  "sizes": "XL",
+  "price": 99.99,
+  "badgeType": "outline",
+  "badge": "Manager"
+}
